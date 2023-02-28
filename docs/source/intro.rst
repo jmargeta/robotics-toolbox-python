@@ -259,7 +259,7 @@ a list of link objects.  For example, a Puma560 is simply::
             RevoluteDH(alpha=pi/2),
             RevoluteDH(a=0.4318),
             RevoluteDH(d=0.15005, a=0.0203, alpha=-pi/2),
-            RevoluteDH(d=0.4318, alpha=pi/2)
+            RevoluteDH(d=0.4318, alpha=pi/2),
             RevoluteDH(alpha=-pi/2),
             RevoluteDH()
         ], name="Puma560")
@@ -282,7 +282,7 @@ The toolbox provides such definitions wrapped as class definitions, for example:
                         RevoluteDH(alpha=pi/2),
                         RevoluteDH(a=0.4318),
                         RevoluteDH(d=0.15005, a=0.0203, alpha=-pi/2),
-                        RevoluteDH(d=0.4318, alpha=pi/2)
+                        RevoluteDH(d=0.4318, alpha=pi/2),
                         RevoluteDH(alpha=-pi/2),
                         RevoluteDH()
                     ], name="Puma560"
@@ -359,11 +359,11 @@ or pure rotation -- each with either a constant parameter or a free parameter wh
 .. runblock:: pycon
     :linenos:
 
-    >>> from roboticstoolbox import ETS as ET
+    >>> from roboticstoolbox import ET
     >>> import roboticstoolbox as rtb
     >>> # Puma dimensions (m), see RVC2 Fig. 7.4 for details
     >>> l1 = 0.672; l2 = -0.2337; l3 = 0.4318; l4 = 0.0203; l5 = 0.0837; l6 = 0.4318
-    >>> e = ET.tz(l1) * ET.rz() * ET.ty(l2) * ET.ry() * ET.tz(l3) * ET.tx(l4) * ET.ty(l5) * ET.ry() * ET.tz(l6) * ET.rz() * ET.ry() * ET.rz()
+    >>> e = ET.tz(l1) * ET.Rz() * ET.ty(l2) * ET.Ry() * ET.tz(l3) * ET.tx(l4) * ET.ty(l5) * ET.Ry() * ET.tz(l6) * ET.Rz() * ET.Ry() * ET.Rz()
     >>> print(e)
     >>> robot = rtb.ERobot(e)
     >>> print(robot)
@@ -452,7 +452,7 @@ arguments.
 We could plot the joint coordinates as a function of time using the convenience
 function::
 
-    >>> rtb.qplot(traj.q)
+    >>> rtb.xplot(traj.q)
 
 
 Straight line (Cartesian) paths can be generated in a similar way between
